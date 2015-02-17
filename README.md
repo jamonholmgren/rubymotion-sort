@@ -2,7 +2,8 @@
 
 Based on http://www.jessesquires.com/apples-to-apples-part-two/.
 
-
+I'm using Xcode 6.1.1. Not sure why Swift is so slow -- I ran it
+in release mode. Some sort of optimization flag I don't know about?
 
 ```
             Std     Quick   Heap    Insert  Select
