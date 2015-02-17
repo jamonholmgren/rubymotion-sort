@@ -1,0 +1,128 @@
+      Link ./build/iPhoneSimulator-8.1-Development/rubymotion-sort.app/rubymotion-sort
+    Create ./build/iPhoneSimulator-8.1-Development/rubymotion-sort.app/Info.plist
+    Create ./build/iPhoneSimulator-8.1-Development/rubymotion-sort.app.dSYM
+  Simulate ./build/iPhoneSimulator-8.1-Development/rubymotion-sort.app
+(main)>
+
+::: TRIAL 1 :::
+Generating array of 10000 random integers in range [0, 4294967295)...
+Running RubyMotion...   finished in 0.00650972127914429 sec
+Running Quick     ...   finished in 0.0369071960449219 sec
+Running Heap      ...   finished in 0.0970264673233032 sec
+Running Insertion ...   finished in 10.6456672549248 sec
+Running Selection ...   finished in 12.6013102531433 sec
+Running Merge     ...   finished in 0.147800028324127 sec
+Running Bubble    ...   finished in 19.1302956342697 sec
+
+
+::: TRIAL 2 :::
+Generating array of 10000 random integers in range [0, 4294967295)...
+Running RubyMotion...   finished in 0.00627344846725464 sec
+Running Quick     ...   finished in 0.0361588001251221 sec
+Running Heap      ...   finished in 0.0881760716438293 sec
+Running Insertion ...   finished in 9.91897332668304 sec
+Running Selection ...   finished in 12.2688865065575 sec
+Running Merge     ...   finished in 0.136741518974304 sec
+Running Bubble    ...   finished in 18.9347561597824 sec
+
+
+::: TRIAL 3 :::
+Generating array of 10000 random integers in range [0, 4294967295)...
+Running RubyMotion...   finished in 0.00587302446365356 sec
+Running Quick     ...   finished in 0.0338609218597412 sec
+Running Heap      ...   finished in 0.0851948857307434 sec
+Running Insertion ...   finished in 9.73060858249664 sec
+Running Selection ...   finished in 12.9419351220131 sec
+Running Merge     ...   finished in 0.185417830944061 sec
+Running Bubble    ...   finished in 20.1457641720772 sec
+
+
+::: TRIAL 4 :::
+Generating array of 10000 random integers in range [0, 4294967295)...
+Running RubyMotion...   finished in 0.00587069988250732 sec
+Running Quick     ...   finished in 0.0357217192649841 sec
+Running Heap      ...   finished in 0.0980478525161743 sec
+Running Insertion ...   finished in 9.8369277715683 sec
+Running Selection ...   finished in 13.2088364362717 sec
+Running Merge     ...   finished in 0.137652456760406 sec
+Running Bubble    ...   finished in 19.048902630806 sec
+
+
+::: TRIAL 5 :::
+Generating array of 10000 random integers in range [0, 4294967295)...
+Running RubyMotion...   finished in 0.00619858503341675 sec
+Running Quick     ...   finished in 0.0388347506523132 sec
+Running Heap      ...   finished in 0.0901186466217041 sec
+Running Insertion ...   finished in 9.90981322526932 sec
+Running Selection ...   finished in 12.5578262805939 sec
+Running Merge     ...   finished in 0.147482931613922 sec
+Running Bubble    ...   finished in 18.880787730217 sec
+
+
+::: TRIAL 6 :::
+Generating array of 10000 random integers in range [0, 4294967295)...
+Running RubyMotion...   finished in 0.00609028339385986 sec
+Running Quick     ...   finished in 0.0337471961975098 sec
+Running Heap      ...   finished in 0.0834096670150757 sec
+Running Insertion ...   finished in 9.77311551570892 sec
+Running Selection ...   finished in 13.0553957819939 sec
+Running Merge     ...   finished in 0.17405378818512 sec
+Running Bubble    ...   finished in 18.9816144108772 sec
+
+
+::: TRIAL 7 :::
+Generating array of 10000 random integers in range [0, 4294967295)...
+Running RubyMotion...   finished in 0.00597423315048218 sec
+Running Quick     ...   finished in 0.0361495614051819 sec
+Running Heap      ...   finished in 0.0867139101028442 sec
+Running Insertion ...   finished in 9.94593697786331 sec
+Running Selection ...   finished in 12.1834084391594 sec
+Running Merge     ...   finished in 0.145210206508636 sec
+(nil)?  Bubble  finished in 20.357992708683 sec
+
+
+::: TRIAL 8 :::
+Generating array of 10000 random integers in range [0, 4294967295)...
+Running RubyMotion...   finished in 0.00579535961151123 sec
+Running Quick     ...   finished in 0.0357387065887451 sec
+Running Heap      ...   finished in 0.10184919834137 sec
+Running Insertion ...   finished in 10.1415519714355 sec
+Running Selection ...   finished in 14.129958987236 sec
+Running Merge     ...   finished in 0.181125581264496 sec
+Running Bubble    ...   finished in 21.7909380197525 sec
+
+
+::: TRIAL 9 :::
+Generating array of 10000 random integers in range [0, 4294967295)...
+Running RubyMotion...   finished in 0.0063939094543457 sec
+Running Quick     ...   finished in 0.0429713726043701 sec
+Running Heap      ...   finished in 0.0889104604721069 sec
+Running Insertion ...   finished in 9.96083092689514 sec
+Running Selection ...   finished in 12.7450897097588 sec
+Running Merge     ...   finished in 0.194099903106689 sec
+Running Bubble    ...   finished in 20.956934273243 sec
+
+
+::: TRIAL 10 :::
+Generating array of 10000 random integers in range [0, 4294967295)...
+Running RubyMotion...   finished in 0.00584393739700317 sec
+Running Quick     ...   finished in 0.0331545472145081 sec
+Running Heap      ...   finished in 0.084105908870697 sec
+Running Insertion ...   finished in 9.34787219762802 sec
+Running Selection ...   finished in 13.5097459554672 sec
+Running Merge     ...   finished in 0.132338643074036 sec
+Running Bubble    ...   finished in 20.3124907016754 sec
+2015-02-16 23:10:26.026 rubymotion-sort[49512:3311316]
+
+Final Results:
+--------------
+RubyMotion sort average time = 0.00608232021331787 sec
+Quick      sort average time = 0.0363244771957397 sec
+Heap       sort average time = 0.0903553068637848 sec
+Insertion  sort average time = 9.9211297750473 sec
+Selection  sort average time = 12.9202393472195 sec
+Merge      sort average time = 0.15819228887558 sec
+Bubble     sort average time = 19.8540476441383 sec
+2015-02-16 23:10:26.027 rubymotion-sort[49512:3311316]
+Test complete.
+(nil)?

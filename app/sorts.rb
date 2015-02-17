@@ -1,21 +1,17 @@
 # https://github.com/jessesquires/objc-sorts/blob/master/ObjcSorts/sorts.m
 
-def objcSort(arr)
-  puts "objcSort"
-  arr.sortUsingComparator ->(n1, n2) {
-    n1.compare(n2)
-  }
+def rubymotion_sort(arr)
+  arr.sort!
 end
 
 def selectionSort(arr)
-  puts "selectionSort"
   minIndex = 0
 
-  for i in 0..(arr.count + 1)
+  for i in 0..(arr.count - 1)
     minIndex = i
 
-    for j in (i + 1)..(arr.count)
-      if arr.objectAtIndex(j).integerValue < arr.objectAtIndex(minIndex).integerValue
+    for j in (i + 1)..(arr.count - 1)
+      if arr.objectAtIndex(j) < arr.objectAtIndex(minIndex)
         minIndex = j
       end
     end
@@ -27,12 +23,11 @@ def selectionSort(arr)
 end
 
 def insertionSort(arr)
-  puts "insertionSort"
-  for i in 1..(arr.count)
+  for i in 1..(arr.count - 1)
     j = i
     target = arr.objectAtIndex(i)
 
-    while (j > 0 && target.integerValue < arr.objectAtIndex(j.- 1).integerValue)
+    while (j > 0 && target < arr.objectAtIndex(j - 1))
       arr.exchangeObjectAtIndex(j, withObjectAtIndex:j - 1)
       j -= 1
     end
@@ -41,17 +36,16 @@ def insertionSort(arr)
 end
 
 def partition(arr, left, right)
-  puts "partition"
   i = left
   j = right
-  pivot = arr.objectAtIndex((left.+ right) / 2).integerValue
+  pivot = arr.objectAtIndex((left + right) / 2)
 
   while i <= j
-    while arr.objectAtIndex(i).integerValue < pivot
+    while arr.objectAtIndex(i) < pivot
       i += 1
     end
 
-    while (j > 0 && arr.objectAtIndex(j).integerValue > pivot)
+    while (j > 0 && arr.objectAtIndex(j) > pivot)
       j -= 1
     end
 
@@ -68,16 +62,15 @@ def partition(arr, left, right)
 end
 
 def merge(arr, first, mid, last)
-  puts "merge"
-  tempArr = NSMutableArray.alloc.init
+  tempArr = []
   indexA = first
   indexB = mid
 
   while (indexA < mid && indexB < last)
-    numA = arr.objectAtIndex(indexA)
-    numB = arr.objectAtIndex(indexB)
+    numA = arr[indexA]
+    numB = arr[indexB]
 
-    if (numA.integerValue < numB.integerValue)
+    if (numA < numB)
       tempArr.addObject(numA)
       indexA += 1
     else
@@ -98,14 +91,13 @@ def merge(arr, first, mid, last)
 
   indexA = first
 
-  for i in 0..tempArr.count
+  for i in 0..tempArr.count - 1
     arr.replaceObjectAtIndex(indexA, withObject:tempArr.objectAtIndex(i))
     indexA += 1
   end
 end
 
 def merge_sort(arr, first, last)
-  puts "merge_sort"
   if (first + 1 < last)
     mid = (first + last) / 2
     merge_sort(arr, first, mid)
@@ -115,12 +107,10 @@ def merge_sort(arr, first, last)
 end
 
 def mergeSort(arr)
-  puts "mergeSort"
   merge_sort(arr, 0, arr.count)
 end
 
 def quick_sort(arr, left, right)
-  puts "quick_sort"
   index = partition(arr, left, right)
 
   if (left < index - 1)
@@ -133,22 +123,20 @@ def quick_sort(arr, left, right)
 end
 
 def quickSort(arr)
-  puts "quickSort"
   quick_sort(arr, 0, arr.count - 1)
 end
 
 def sift_down(arr, start, stop)
-  puts "sift_down"
   root = start
 
   while ((root * 2 + 1) <= stop)
     child = root * 2 + 1
 
-    if (child + 1 <= stop && arr.objectAtIndex(child).integerValue < arr.objectAtIndex(child + 1).integerValue)
+    if (child + 1 <= stop && arr.objectAtIndex(child) < arr.objectAtIndex(child + 1))
       child += 1
     end
 
-    if (arr.objectAtIndex(root).integerValue < arr.objectAtIndex(child).integerValue)
+    if (arr.objectAtIndex(root) < arr.objectAtIndex(child))
       arr.exchangeObjectAtIndex(root, withObjectAtIndex:child)
       root = child
     else
@@ -158,7 +146,6 @@ def sift_down(arr, start, stop)
 end
 
 def heapify(arr, count)
-  puts "heapify"
   start = (count - 2) / 2
 
   while (start >= 0)
@@ -168,7 +155,6 @@ def heapify(arr, count)
 end
 
 def heapSort(arr)
-  puts "heapSort"
   heapify(arr, arr.count)
 
   stop = arr.count - 1
@@ -181,15 +167,14 @@ def heapSort(arr)
 end
 
 def bubbleSort(arr)
-  puts "bubbleSort"
   swapped = true
   k = 0
 
   while (swapped)
     swapped = false
 
-    for i in 0..(arr.count - 1 - k)
-      if (arr.objectAtIndex(i).integerValue > arr.objectAtIndex(i + 1).integerValue)
+    for i in 0..(arr.count - 2 - k)
+      if (arr.objectAtIndex(i) > arr.objectAtIndex(i + 1))
         arr.exchangeObjectAtIndex(i, withObjectAtIndex:i + 1)
         swapped = true
       end

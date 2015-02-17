@@ -5,46 +5,43 @@ def assert(test, msg="Assertation failed")
 end
 
 def arrayIsSorted(arr)
-  for i in 0..(arr.count - 1)
-    return false if arr[i] < arr[i + 1]
-  end
-  return true
+  arr == arr.sort
 end
 
 def randomIntegerArray(count)
-  NSLog("Generating array of %ld random integers in range [0, %u)...", count, UINT32_MAX)
+  puts("Generating array of #{count} random integers in range [0, #{UINT32_MAX})...")
 
   arr = NSMutableArray.alloc.initWithCapacity(count)
 
-  for i in 0..count
+  for i in 0..(count - 1)
     number = NSNumber.numberWithInteger(rand(UINT32_MAX))
     arr.addObject(number)
   end
 
-  assert(!arrayIsSorted(arr))
+  assert !arrayIsSorted(arr)
   return arr
 end
 
 def sortAlgorithmNameForType(type)
   case type
-  when :objective_c then "Objective-C"
-  when :quick       then "Quick"
-  when :heap        then "Heap"
-  when :insertion   then "Insertion"
-  when :selection   then "Selection"
-  when :merge       then "Merge"
-  when :bubble      then "Bubble"
+  when :rubymotion  then "RubyMotion"
+  when :quick       then "Quick     "
+  when :heap        then "Heap      "
+  when :insertion   then "Insertion "
+  when :selection   then "Selection "
+  when :merge       then "Merge     "
+  when :bubble      then "Bubble    "
   end
 end
 
 def sortArrayWithNameUsingBlock(anArray, sortType, sortBlock)
-  puts "sortArrayWithNameUsingBlock"
   arrCopy = anArray.mutableCopy
-  NSLog("Running %@...", sortAlgorithmNameForType(sortType))
+  print "Running #{sortAlgorithmNameForType(sortType)}..."
   startTime = NSDate.date
   sortBlock.call(arrCopy)
-  NSTimeInterval totalTime = startTime.timeIntervalSinceNow * -1
-  assert(arrayIsSorted(arrCopy))
-  NSLog("%@ finished in %lf sec\n", sortAlgorithmNameForType(sortType), totalTime)
+  totalTime = startTime.timeIntervalSinceNow * -1.0
+  assert arrayIsSorted(arrCopy)
+  assert totalTime > 0.0
+  puts "\t\tfinished in #{totalTime} sec"
   return totalTime
 end

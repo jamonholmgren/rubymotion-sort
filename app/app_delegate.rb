@@ -1,78 +1,76 @@
 # https://github.com/jessesquires/objc-sorts/blob/master/ObjcSorts/main.m
 
-MAX_COUNT = 10_000
-NUM_TRIALS = 10
+MAX_COUNT = 10000
+NUM_TRIALS = 10.0
 
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
-    sortAlgorithms = [
-      :objective_c,
-      :quick,
-      :heap,
-      :insertion,
-      :selection,
-      :merge,
-      :bubble,
-    ]
-
-    averageSortTimes = NSMutableDictionary.dictionaryWithObjects([ (0.0), (0.0), (0.0), (0.0), (0.0), (0.0), (0.0) ], forKeys:sortAlgorithms)
+    averageSortTimes = {
+      rubymotion:   0.0,
+      quick:        0.0,
+      heap:         0.0,
+      insertion:    0.0,
+      selection:    0.0,
+      merge:        0.0,
+      bubble:       0.0,
+    }
 
     for t in 1..NUM_TRIALS
-      NSLog("\n\n::: TRIAL %ld :::", t)
+      puts("\n\n::: TRIAL #{t} :::")
 
       unsortedArray = randomIntegerArray(MAX_COUNT)
 
-      for sort in sortAlgorithms
-        sortType = sort.integerValue
-
+      for sort in averageSortTimes.keys
         sortTime = 0.0
 
-        case (sortType)
-          when :objective_c
-            sortTime = sortArrayWithNameUsingBlock(unsortedArray, sortType, ->(arr) {
-              objcSort(arr)
-            })
+        case (sort)
+        when :rubymotion
+          sortTime = sortArrayWithNameUsingBlock(unsortedArray, sort, ->(arr) {
+            rubymotion_sort(arr)
+          })
 
-          when :quick
-            sortTime = sortArrayWithNameUsingBlock(unsortedArray, sortType, ->(arr) {
-              quickSort(arr)
-            })
+        when :quick
+          sortTime = sortArrayWithNameUsingBlock(unsortedArray, sort, ->(arr) {
+            quickSort(arr)
+          })
 
-          when :heap
-            sortTime = sortArrayWithNameUsingBlock(unsortedArray, sortType, ->(arr) {
-              heapSort(arr)
-            })
+        when :heap
+          sortTime = sortArrayWithNameUsingBlock(unsortedArray, sort, ->(arr) {
+            heapSort(arr)
+          })
 
-          when :insertion
-            sortTime = sortArrayWithNameUsingBlock(unsortedArray, sortType, ->(arr) {
-              insertionSort(arr)
-            })
+        when :insertion
+          sortTime = sortArrayWithNameUsingBlock(unsortedArray, sort, ->(arr) {
+            insertionSort(arr)
+          })
 
-          when :selection
-            sortTime = sortArrayWithNameUsingBlock(unsortedArray, sortType, ->(arr) {
-              selectionSort(arr)
-            })
+        when :selection
+          sortTime = sortArrayWithNameUsingBlock(unsortedArray, sort, ->(arr) {
+            selectionSort(arr)
+          })
 
-          when :merge
-            sortTime = sortArrayWithNameUsingBlock(unsortedArray, sortType, ->(arr) {
-              mergeSort(arr)
-            })
+        when :merge
+          sortTime = sortArrayWithNameUsingBlock(unsortedArray, sort, ->(arr) {
+            mergeSort(arr)
+          })
 
-          when :bubble
-            sortTime = sortArrayWithNameUsingBlock(unsortedArray, sortType, ->(arr) {
-              bubbleSort(arr)
-            })
+        when :bubble
+          sortTime = sortArrayWithNameUsingBlock(unsortedArray, sort, ->(arr) {
+            bubbleSort(arr)
+          })
+        else
+          puts sort
         end
 
-        totalTime = averageSortTimes.objectForKey(sort).doubleValue
+        totalTime = averageSortTimes.objectForKey(sort)
         averageSortTimes.setObject(totalTime + sortTime, forKey:sort)
       end
     end
 
     NSLog("\n\nFinal Results:\n--------------")
 
-    averageSortTimes.enumerateKeysAndObjectsUsingBlock(->(sortType, time, stop) {
-      NSLog("%@ sort average time = %lf sec", sortAlgorithmNameForType(sortType.integerValue), time.doubleValue / NUM_TRIALS)
+    averageSortTimes.enumerateKeysAndObjectsUsingBlock(->(sort, time, stop) {
+      puts("#{sortAlgorithmNameForType(sort)} sort average time = #{time / NUM_TRIALS} sec")
     })
 
     NSLog("\n")
