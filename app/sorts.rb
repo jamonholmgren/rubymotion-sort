@@ -11,54 +11,46 @@ def selectionSort(arr)
     minIndex = i
 
     for j in (i + 1)..(arr.count - 1)
-      if arr.objectAtIndex(j) < arr.objectAtIndex(minIndex)
+      if arr[j] < arr[minIndex]
         minIndex = j
       end
     end
 
-    if minIndex != i
-      arr.exchangeObjectAtIndex(i, withObjectAtIndex:minIndex)
-    end
+    arr[i], arr[minIndex] = arr[minIndex], arr[i] if minIndex != i
   end
 end
 
 def insertionSort(arr)
   for i in 1..(arr.count - 1)
     j = i
-    target = arr.objectAtIndex(i)
+    target = arr[i]
 
-    while (j > 0 && target < arr.objectAtIndex(j - 1))
-      arr.exchangeObjectAtIndex(j, withObjectAtIndex:j - 1)
+    while (j > 0 && target < arr[j - 1])
+      arr[j], arr[j - 1] = arr[j - 1], arr[j]
       j -= 1
     end
-    arr.replaceObjectAtIndex(j, withObject:target)
+    arr[j] = target
   end
 end
 
 def partition(arr, left, right)
   i = left
   j = right
-  pivot = arr.objectAtIndex((left + right) / 2)
+  pivot = arr[(left + right) / 2]
 
   while i <= j
-    while arr.objectAtIndex(i) < pivot
-      i += 1
-    end
+    i += 1 while arr[i] < pivot
 
-    while (j > 0 && arr.objectAtIndex(j) > pivot)
-      j -= 1
-    end
+    j -= 1 while (j > 0 && arr.objectAtIndex(j) > pivot)
 
-    if (i <= j)
-      arr.exchangeObjectAtIndex(i, withObjectAtIndex:j)
+    if i <= j
+      arr[i], arr[j] = arr[j], arr[i]
       i += 1
 
-      if (j > 0)
-        j -= 1
-      end
+      j -= 1 if j > 0
     end
   end
-  return i
+  i
 end
 
 def merge(arr, first, mid, last)
@@ -129,26 +121,21 @@ end
 def sift_down(arr, start, stop)
   root = start
 
-  while ((root * 2 + 1) <= stop)
+  while root * 2 + 1 <= stop
     child = root * 2 + 1
+    child += 1 if child + 1 <= stop && arr[child] < arr[child + 1]
 
-    if (child + 1 <= stop && arr.objectAtIndex(child) < arr.objectAtIndex(child + 1))
-      child += 1
-    end
+    return unless arr[root] < arr[child]
 
-    if (arr.objectAtIndex(root) < arr.objectAtIndex(child))
-      arr.exchangeObjectAtIndex(root, withObjectAtIndex:child)
-      root = child
-    else
-      return
-    end
+    arr[root], arr[child] = arr[child], arr[root]
+    root = child
   end
 end
 
 def heapify(arr, count)
   start = (count - 2) / 2
 
-  while (start >= 0)
+  while start >= 0
     sift_down(arr, start, count - 1)
     start -= 1
   end
@@ -159,8 +146,8 @@ def heapSort(arr)
 
   stop = arr.count - 1
 
-  while (stop > 0)
-    arr.exchangeObjectAtIndex(stop, withObjectAtIndex:0)
+  while stop > 0
+    arr[stop], arr[0] = arr[0], arr[stop]
     sift_down(arr, 0, stop - 1)
     stop -= 1
   end
@@ -174,8 +161,8 @@ def bubbleSort(arr)
     swapped = false
 
     for i in 0..(arr.count - 2 - k)
-      if (arr.objectAtIndex(i) > arr.objectAtIndex(i + 1))
-        arr.exchangeObjectAtIndex(i, withObjectAtIndex:i + 1)
+      if (arr[i] > arr[i + 1])
+        arr[i], arr[i + 1] = arr[i + 1], arr[i]
         swapped = true
       end
     end
