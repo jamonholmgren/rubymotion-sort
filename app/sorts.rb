@@ -7,29 +7,39 @@ end
 def selectionSort(arr)
   minIndex = 0
 
-  for i in 0..(arr.count - 1)
+  i = 0
+  while i < arr.count
     minIndex = i
 
-    for j in (i + 1)..(arr.count - 1)
-      if arr[j] < arr[minIndex]
-        minIndex = j
-      end
+    j = i + 1
+    while j < arr.count
+      minIndex = j if arr[j] < arr[minIndex]
+      j += 1
     end
 
-    arr[i], arr[minIndex] = arr[minIndex], arr[i] if minIndex != i
+    if minIndex != i
+      swap = arr[i]
+      arr[i] = arr[minIndex]
+      arr[minIndex] = swap
+    end
+    i += 1
   end
 end
 
 def insertionSort(arr)
-  for i in 1..(arr.count - 1)
+  i = 1
+  while i < arr.count
     j = i
     target = arr[i]
 
     while (j > 0 && target < arr[j - 1])
-      arr[j], arr[j - 1] = arr[j - 1], arr[j]
+      swap = arr[j]
+      arr[j] = arr[j - 1]
+      arr[j - 1] = swap
       j -= 1
     end
     arr[j] = target
+    i += 1
   end
 end
 
@@ -44,7 +54,10 @@ def partition(arr, left, right)
     j -= 1 while (j > 0 && arr.objectAtIndex(j) > pivot)
 
     if i <= j
-      arr[i], arr[j] = arr[j], arr[i]
+      swap = arr[i]
+      arr[i] = arr[j]
+      arr[j] = swap
+
       i += 1
 
       j -= 1 if j > 0
@@ -63,30 +76,33 @@ def merge(arr, first, mid, last)
     numB = arr[indexB]
 
     if (numA < numB)
-      tempArr.addObject(numA)
+      tempArr << numA
       indexA += 1
     else
-      tempArr.addObject(numB)
+      tempArr << numB
       indexB += 1
     end
   end
 
   while (indexA < mid)
-    tempArr.addObject(arr.objectAtIndex(indexA))
+    tempArr << arr[indexA]
     indexA += 1
   end
 
   while (indexB < last)
-    tempArr.addObject(arr.objectAtIndex(indexB))
+    tempArr << arr[indexB]
     indexB += 1
   end
 
   indexA = first
 
-  for i in 0..tempArr.count - 1
-    arr.replaceObjectAtIndex(indexA, withObject:tempArr.objectAtIndex(i))
+  i = 0
+  while i < tempArr.count
+    arr[indexA] = tempArr[i]
     indexA += 1
+    i += 1
   end
+
 end
 
 def merge_sort(arr, first, last)
@@ -127,7 +143,10 @@ def sift_down(arr, start, stop)
 
     return unless arr[root] < arr[child]
 
-    arr[root], arr[child] = arr[child], arr[root]
+    swap = arr[root]
+    arr[root] = arr[child]
+    arr[child] = swap
+
     root = child
   end
 end
@@ -147,7 +166,10 @@ def heapSort(arr)
   stop = arr.count - 1
 
   while stop > 0
-    arr[stop], arr[0] = arr[0], arr[stop]
+    swap = arr[stop]
+    arr[stop] = arr[0]
+    arr[0] = swap
+
     sift_down(arr, 0, stop - 1)
     stop -= 1
   end
@@ -160,11 +182,16 @@ def bubbleSort(arr)
   while (swapped)
     swapped = false
 
-    for i in 0..(arr.count - 2 - k)
+    i = 0
+    while i < arr.count - 1 - k
       if (arr[i] > arr[i + 1])
-        arr[i], arr[i + 1] = arr[i + 1], arr[i]
+        swap = arr[i]
+        arr[i] = arr[i + 1]
+        arr[i + 1] = swap
+
         swapped = true
       end
+      i += 1
     end
     k += 1
   end

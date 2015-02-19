@@ -11,11 +11,11 @@ end
 def randomIntegerArray(count)
   puts("Generating array of #{count} random integers in range [0, #{UINT32_MAX})...")
 
-  arr = NSMutableArray.alloc.initWithCapacity(count)
+  arr = Array.new(count)
 
   for i in 0..(count - 1)
     number = NSNumber.numberWithInteger(rand(UINT32_MAX))
-    arr.addObject(number)
+    arr << number
   end
 
   assert !arrayIsSorted(arr)

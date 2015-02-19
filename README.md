@@ -13,7 +13,7 @@ My machine is a Late 2013 13" MacBook Pro Retina, 2.4 GHz i5, 8 GB RAM, running 
               Std   Quick    Heap Insert   Select
 ObjC        0.008   0.007   0.015    1.3     2.82
 Swift       0.008   0.011   0.023   10.8     9.00
-RubyMotion  0.007   0.066   0.161   21.5    17.03
+RubyMotion  0.006   0.050   0.147   18.2    15.84
 ```
 
 ### Full Results
@@ -38,13 +38,10 @@ Selection sort: 9.003071 s (± 0.519540)
 ```
 
 ```
-RubyMotion sort average time = 0.00776020288467407 sec
-Quick      sort average time = 0.0659250974655151 sec
-Heap       sort average time = 0.161083036661148 sec
-Insertion  sort average time = 21.5382670581341 sec
-Selection  sort average time = 17.0347119450569 sec
-Merge      sort average time = 0.162473559379578 sec
-Bubble     sort average time = 35.8965599417686 sec
-```
-
-
+RubyMotion sort average time = 0.00631639957427978 sec
+Quick      sort average time = 0.0499524891376495 sec
+Heap       sort average time = 0.147248142957687 sec
+Insertion  sort average time = 18.1509006261825 sec
+Selection  sort average time = 15.8354230761528 sec
+Merge      sort average time = 0.0954569399356842 sec
+Bubble     sort average time = 31.8725603342056 sec```
